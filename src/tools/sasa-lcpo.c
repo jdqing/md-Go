@@ -1,5 +1,12 @@
-/*This is a tool for caculte the sasa of a protein using LCPO method.
+/*
+ * LCPO
  *
+ * This is a tool for caculte the sasa of a protein using LCPO method.
+ *This code was used to try converting the gbsa.F90 to C Code.
+ *But I want to try link the F90 file to the C project first.
+ *or you can say mixed-language compiling.
+ *
+ * Not a complete code!!!
  */
 
 double **gbsafrc;
