@@ -5,16 +5,10 @@
 #define _INIT_H
 
 #include "glbcova.h"
-
-typedef struct SimulationConfig {
-  char          PDBID[20];
-  double        TemperatureK;
-  double        LJScaleN;
-  double        CUTOFF;
-  unsigned long SEED;
-} SConfig;
-
-extern SConfig *pSimuCfg;
+#include "../box/boxoperation.h"
+#include "../fun/force.h"
+#include "../list/listroutine.h"
+#include "../inout/readin.h"
 
 int init_Go(const char *cfgfile);
 
