@@ -7,7 +7,11 @@
 #include "glbcova.h"
 
 typedef struct SimulationConfig {
-  /* data */
+  char          PDBID[20];
+  double        TemperatureK;
+  double        LJScaleN;
+  double        CUTOFF;
+  unsigned long SEED;
 } SConfig;
 
 extern SConfig *pSimuCfg;
