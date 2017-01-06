@@ -12,7 +12,27 @@
 
 int main(int argc, char *argv[])
 {
-	init_Go();//initialize the program.
+	printf("////////////////////////////Go_Begin/////////////////////////////\n");
+	printf("////Compiling Date: %s\n",__DATE__);
+	printf("////Compiling Time: %s\n",__TIME__);
+	printf("/////////////////////////////////////////////////////////////////\n");
+
+	char cfgfile[50];//the config file name.
+	if(argc == 1){
+		strcpy(cfgfile,"gomodel.cfg");
+		printf("////Select the config file : gomdel.cfg (default)\n");
+	}
+	else if(argc == 2){
+		strcpy(cfgfile,argv[1]);
+		printf("////Select the config file : %s\n",cfgfile);
+	}
+	else{
+		printf("////Just accept 0 or 1 parameter. e.g. \"./a.out gomodel.cfg\"\n");
+		return 0;
+	}
+
+	if(!init_Go(cfgfile)
+			) return 0;//initialize the program.
 
 	estimate_Go();//estimate the parameters before running.
 
@@ -22,6 +42,7 @@ int main(int argc, char *argv[])
 
 	deal_for("RMSD");//deal the data for some results after running. e.g. Cv, RMSD...
 
-	printf("%10.8lf\n",pi );
+	end_Go();
+
 	return 0;
 }
