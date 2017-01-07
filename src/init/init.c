@@ -12,8 +12,7 @@ int init_Go(const char *cfgfile)
   fp = fopen (cfgfile,"r");
   if (fp!=NULL)
   {
-    pSimuCfg = ( SConfig * )calloc( 1, sizeof ( SConfig ) );
-    read_Simu_Config( fp, pSimuCfg);
+    read_Simu_Config(fp);
     fclose (fp);
   }
   else{
@@ -35,7 +34,30 @@ int init_Go(const char *cfgfile)
   set_dr1();
   printf(".");
 
+  read_maxi_key("MAXIKEY.dat");//read data from force field
+  printf(".");
 
+  list_crowder_types();
+  printf(".");
+
+  char str_filename[50];
+  sprintf(str_filename,"Config1_%s_T%d.dat",pSimuCfg->PDBID,
+          int(pSimuCfg->TemperatureK));
+  fp = fopen (str_filename,"r");//Check the config1 file exist or not. This
+                                //decide run from the beginning or continue run.
+  if (fp!=NULL)
+  {
+    // printf("////////%s exist.\n",str_filename);
+    fclose (fp);
+  }
+  else
+  {
+    // printf("////////%s does not exist.\n",str_filename);
+    sprintf(str_filename,"%s.pdb",pSimuCfg->PDBID);
+    read_PDB (str_filename);
+    printf(".");
+
+  }
 
   printf(".\n");
   printf("////////Initialization Complete\n");

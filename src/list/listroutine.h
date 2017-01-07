@@ -5,4 +5,6 @@
 
 int set_dr1();
 
+int list_crowder_types ();
+
 #endif

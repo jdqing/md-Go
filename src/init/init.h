@@ -10,6 +10,7 @@
 #include "../list/listroutine.h"
 #include "../inout/readin.h"
 
+
 int init_Go(const char *cfgfile);
 
 int end_Go();
