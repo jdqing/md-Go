@@ -21,4 +21,6 @@ int read_maxi_key( const char * file_maxi_key );
 
 int read_PDB ( char * file_PDB ) ;
 
+int read_original_structure  ( char * file_original_structure );
+
 #endif

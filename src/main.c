@@ -31,8 +31,11 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 
-	if(!init_Go(cfgfile)
-			) return 0;//initialize the program.
+	if(!init_Go(cfgfile))//initialize the program.
+	{
+		printf("//////ERROR: init_Go not succeed\n");
+		return 0;
+	}
 
 	estimate_Go();//estimate the parameters before running.
 
