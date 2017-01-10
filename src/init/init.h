@@ -9,6 +9,7 @@
 #include "../fun/force.h"
 #include "../list/listroutine.h"
 #include "../inout/readin.h"
+#include "../tools/progress-bar.h"
 
 
 int init_Go(const char *cfgfile);

@@ -1003,3 +1003,99 @@ int populate_list ( int In1, int In2, int InInt ) ///QM: In1=0;<ns and In2=In1;<
 	}
   return 1;
 }
+
+int flag_any_2_atoms()
+{
+    //'b'->bonds;'a'->angles;'d'->dihedral;'c'->native contacts;
+    //'s'->same;'o'->others
+    int i,j,i1,i2,j1,k1;
+
+    Flags2Atom = (char **)malloc((NTP_atom+1)*sizeof(char *));
+    for(i=1;i<NTP_atom+1;i++)
+    {
+        Flags2Atom[i]=(char *)malloc((NTP_atom+1)*sizeof(char));
+    }
+
+    for(i=1;i<NTP_atom+1;i++)
+    {
+        for(j=1;j<NTP_atom+1;j++)
+        {
+
+            if (i==j)
+            {
+                Flags2Atom[i][j]='s';
+                continue;
+            }
+
+            k1=0;
+
+            for(j1=1;j1<bond_list_mass+1;j1+=2)
+            {
+                i1=bond_list_content[j1];
+                i2=bond_list_content[j1+1];
+                if( ( i == i1 && j == i2 ) || ( i == i2 && j == i1 ) )
+                {
+                    Flags2Atom[i][j]='b';
+                    k1=1;
+                    break;
+                }
+            }
+
+            if(k1) continue;
+
+            for (j1 = 1; j1 < valence_list_mass + 1; j1 += 2) ///// exclude valence case between atom i and i+2
+			{
+				i1 = valence_list_content [j1];
+
+				i2 = valence_list_content [j1 + 1];
+
+				if ( ( i == i1 && j == i2 ) || ( i == i2 && j == i1 ) )
+                {
+                    Flags2Atom[i][j]='a';
+                    k1=1;
+                    break;
+                }
+			}
+
+			if ( k1 ) continue;
+
+			for (j1 = 1; j1 < dihedral_list_mass + 1; j1 += 2)   ///// exclude dihedral case between atom i and i+3
+			{
+				i1 = dihedral_list_content [j1];
+
+				i2 = dihedral_list_content [j1 + 1];
+
+				if ( ( i == i1 && j == i2 ) || ( i == i2 && j == i1 ) )
+                {
+                    Flags2Atom[i][j]='d';
+                    k1=1;
+                    break;
+                }
+			}
+
+			if ( k1 ) continue;
+
+			for (j1 = 1; j1 < native_list_mass + 1; j1 += 2)
+            {
+                i1 = native_list_content [j1];
+
+                i2 = native_list_content [j1 + 1];
+
+                if ( ( i == i1 && j == i2 ) || ( i == i2 && j == i1 ) )
+                {
+                    Flags2Atom[i][j]='c';
+                    k1=1;
+                    break;
+                }
+            }
+
+            if ( k1 ) continue;
+
+			Flags2Atom[i][j]='o';
+
+        }
+    }
+
+    return 1;
+
+}

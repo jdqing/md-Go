@@ -22,4 +22,6 @@ int populate_list ( int In1, int In2, int InInt );
 
 int separate_in_cells ( int In1, int In2, int InInt );
 
+int flag_any_2_atoms();
+
 #endif
