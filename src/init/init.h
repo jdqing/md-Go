@@ -10,6 +10,7 @@
 #include "../list/listroutine.h"
 #include "../inout/readin.h"
 #include "../tools/progress-bar.h"
+#include "../tools/gbsa_f2c.h"
 
 
 int init_Go(const char *cfgfile);

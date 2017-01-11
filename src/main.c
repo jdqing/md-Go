@@ -18,16 +18,12 @@ int main(int argc, char *argv[])
 	printf("/////////////////////////////////////////////////////////////////\n");
 
 	char cfgfile[50];//the config file name.
-	if(argc == 1){
-		strcpy(cfgfile,"gomodel.cfg");
-		printf("////Select the config file : gomdel.cfg (default)\n");
-	}
-	else if(argc == 2){
+	if(argc == 2){
 		strcpy(cfgfile,argv[1]);
 		printf("////Select the config file : %s\n",cfgfile);
 	}
 	else{
-		printf("////Just accept 0 or 1 parameter. e.g. \"./a.out gomodel.cfg\"\n");
+		printf("////Just accept 1 parameter. e.g. \"./a.out gomodel.cfg\"\n");
 		return 0;
 	}
 

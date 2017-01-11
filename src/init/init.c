@@ -5,7 +5,7 @@
 
 int init_Go(const char *cfgfile)
 {
-  int In1, In2, In12, InInt;
+  char str_filename[50];
 
   printf("////Initialization of the whole program\n");
   printf("////////Initialization\n");
@@ -42,7 +42,7 @@ int init_Go(const char *cfgfile)
   list_crowder_types();
   displayProgress(60);
 
-  char str_filename[50];
+
   sprintf(str_filename,"Config1_%s_T%d.dat",pSimuCfg->PDBID,
           int(pSimuCfg->TemperatureK));
   fp = fopen (str_filename,"r");//Check the config1 file exist or not. This
@@ -66,43 +66,13 @@ int init_Go(const char *cfgfile)
 
     sprintf(str_filename, "%s_noh.dat", pSimuCfg->PDBID);
     populate_native_lists(str_filename, pSimuCfg->CUTOFF);
-    displayProgress(85);
-
-    sprintf(str_filename, "Snap0_%s.pdb", pSimuCfg->PDBID);
-    if(!read_original_structure ( str_filename )) return 0;
-
-    set_box();
     displayProgress(90);
-
-    for (In1 = 0; In1 < ns; In1++)
-		{
-			for (In2 = In1; In2 < ns; In2++)
-			{
-				In12 = In1 * ns - In1 * (1 + In1) / 2 + In2;
-
-				for (InInt = 0; InInt < NPI; InInt++)
-				{
-					list_mass [ In12 ][ InInt ] = 0;
-
-					list_content [ In12 ][ InInt ] = NULL;
-
-					populate_list ( In1, In2, InInt );
-
-					PROGRESS [ In12 ][ InInt ] = 0;
-
-					// printf ("list_mass [%d][%d] = %d\n\n", In12, InInt, list_mass [In12][InInt] );
-				}
-			}
-		}
-    displayProgress(95);
   }
 
   flag_any_2_atoms();
-  displayProgress(97);
-
+  displayProgress(99);
 
   displayProgress(100);
-  printf("\n");
   printf("////////Initialization Complete\n");
   return 1;
 }
