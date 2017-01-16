@@ -19,6 +19,6 @@ void displayProgress(int progress){
           printf("_");//打印进度条上还有多少没有完成的
   fprintf(stdout, " ]%3d%%",progress);
   fflush(stdout);
-  usleep(200000);
+  usleep(10000);
   if(progress==100)printf("\n");
 }
