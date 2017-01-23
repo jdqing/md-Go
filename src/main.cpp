@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
 
 	estimate_Go();//estimate the parameters before running.
 
+	printf("LJ_SCALE_n=%lf\n",LJ_SCALE_n );
+
 	run_Go();//begin run the MD.
 
 	con_Go();//continue if broken by some reason.

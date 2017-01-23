@@ -1,8 +1,12 @@
 #ifndef _RUNGO_H
 #define _RUNGO_H
 
-#include "../init/glbcova.h"
+
 #include "../init/init.h"
+#include "../inout/writeout.h"
+#include "../tools/move.h"
+
+
 
 int init_run_Go();
 

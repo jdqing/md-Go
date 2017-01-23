@@ -5,9 +5,6 @@
 #define _GLBCOVA_H
 #include "../includefi.h"
 
-#define NPI 1 //the number of different interactions which require a list
-				   //LJ (WCA) -> InInt = 0; Coulomb -> InInt = 1
-
 extern const double pi ;
 extern long int klok;
 extern double Q;  //add by Meng
@@ -50,12 +47,14 @@ extern int * RIGID_SET , * RIGID_END ;
 //Individual properties of atoms
 extern const int ns ; //the number of different atom types
 extern const int nps ; //the number of different pairs of atoms
+extern const int npi;
 extern const double MASS [] ; //atom masses: N, C, O, H, S, 1UBQ 8564.47
                              //(QM: mass of ubiquitin)
 extern const double D [] ; //largest atom diameters: N, C, O, H, S, 1UBQ
 extern double PD [];
 extern double PD_sq [];
-extern const double VISC [] ; //0.1 water viscosity
+extern const double VISC0 [] ; //water viscosity
+extern const double VISC [] ; //default: 0.1 water viscosity
 extern double K1 [], K2 [];
 extern double SIGMA_FORCE []; //thermostat random force
 

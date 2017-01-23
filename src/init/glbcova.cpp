@@ -46,6 +46,7 @@ int * RIGID_SET = NULL, * RIGID_END = NULL;
 //Individual properties of atoms
 const int ns = 6; //the number of different atom types
 const int nps = ns * (ns + 1) / 2; //the number of different pairs of atoms
+const int npi = NPI;
 const double MASS [ns] = { 14.01, 12.01, 16.00, 1.008, 32.06, 8564.47 };
               //atom masses: N, C, O, H, S, 1UBQ 8564.47 (QM: mass of ubiquitin)
 const double D [ns] = { 3.648, 3.816, 3.442, 2.974, 4.0, 24.0 };
@@ -53,10 +54,14 @@ const double D [ns] = { 3.648, 3.816, 3.442, 2.974, 4.0, 24.0 };
 double PD [nps];
 double PD_sq [nps];
 
-//const double VISC [ns] = { 27.75 * D [0], 27.75 * D [1], 27.75 * D [2],
-//27.75 * D [3], 27.75 * D [4], 27.75 * D [5] }; //water viscosity
-const double VISC [ns] = { 2.775 * D [0], 2.775 * D [1], 2.775 * D [2],
-  2.775 * D [3], 2.775 * D [4], 2.775 * D [5] };
+const double VISC0 [ns] = { 27.75 * D [0], 27.75 * D [1], 27.75 * D [2],
+                            27.75 * D [3], 27.75 * D [4], 27.75 * D [5] }; //water viscosity
+const double VISC [ns] = {  ORDERVISC *  VISC0[0],
+                            ORDERVISC *  VISC0[1],
+                            ORDERVISC *  VISC0[2],
+                            ORDERVISC *  VISC0[3],
+                            ORDERVISC *  VISC0[4],
+                            ORDERVISC *  VISC0[5]}; //default: 0.1 water viscosity
   //0.1 water viscosity   to const.cpp .h
 
 double K1 [ns], K2 [ns];

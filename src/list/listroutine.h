@@ -18,9 +18,11 @@ void add_to_native_list ( int i, int j, double r2, double E );
 
 int populate_native_lists ( char * file_native_list, double cutoff );
 
+int separate_in_cells ( int In1, int In2, int InInt );
+
 int populate_list ( int In1, int In2, int InInt );
 
-int separate_in_cells ( int In1, int In2, int InInt );
+void check_shifts ( void );
 
 int flag_any_2_atoms();
 

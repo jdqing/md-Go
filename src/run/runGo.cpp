@@ -50,37 +50,40 @@ int run_Go()
 {
   if(!init_run_Go()) return 0;
 
+  printf("////MD run\n" );
+  printf("////////MD run begin\n" );
+
   FILE *fp;
 
-  char str_filename[50];
+  int In1;
+
+
 
   long int klok_old = 0;
 
-  const long int  total_steps = 50000000001;
+  const long int  total_steps = 500000001;
   const int       steps_record= 10000;
 
   for (klok = klok_old; klok < total_steps; klok++ )
   {
     if(klok % steps_record == 0)
     {
-      velocity_rescale ( sc );
-      maxwell_tail = check_maxwell ();
-      cm_maxwell_tail = check_cm_maxwell ();
-      ang_maxwell_tail = check_angular_maxwell ();
-
-      sprintf(str_filename, "Diagnost_%s_T%d.dat", pSimuCfg->PDBID,
-              int(pSimuCfg->TemperatureK));
-      fp = fopen (str_filename,"a");
-      if (fp!=NULL)
-      {
-        fprintf ( fp, "%ld %le %le %le %le %le %le %le\n", klok, sc [3], sc [0],
-              sc [1], sc [2], maxwell_tail, cm_maxwell_tail, ang_maxwell_tail );
-        fclose (fp);
-      }
-
+      make_records();
     }
 
+    char str_filename[50];
+    sprintf(str_filename, "Contacts_%s_T%d.dat", pSimuCfg->PDBID,
+            int(pSimuCfg->TemperatureK));
+    deterministic_forces ( str_filename );
+
+    full_forces ();
+
+		move_rigid_units ();
+
+		In1 = check_box ();
+		if ( !In1 ) check_shifts ();
   }
+  printf("////////MD run complete\n" );
 
   return 1;
 }

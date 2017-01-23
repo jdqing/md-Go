@@ -1004,6 +1004,74 @@ int populate_list ( int In1, int In2, int InInt ) ///QM: In1=0;<ns and In2=In1;<
   return 1;
 }
 
+void check_shifts ( void )
+{
+	int i;
+
+	int In1, In2, In12, InInt;
+
+	double x_tmp, y_tmp, z_tmp, r2;
+
+	double shift [ ns ];
+
+	/////////////////////////////////////
+
+	for (In1 = 0; In1 < ns; In1++) shift [ In1 ] = 0;
+
+	for (i = 1; i < NT_atom + 1; i++)
+	{
+		In1 = part_key [i];
+
+		x_tmp = x [i] - x_old [i];
+
+		y_tmp = y [i] - y_old [i];
+
+		z_tmp = z [i] - z_old [i];
+
+		r2 = x_tmp * x_tmp + y_tmp * y_tmp + z_tmp * z_tmp;
+
+		if ( r2 > shift [ In1 ] ) shift [ In1 ] = r2;
+	}
+
+	for (In1 = 0; In1 < ns; In1++) shift [ In1 ] = sqrt ( shift [ In1 ] );
+
+	/////////////////////////////////////
+
+	//for (In1 = 0; In1 < ns; In1++) printf ("shift [%d] = %le ", In1, shift [In1]);
+
+	//printf ("\n\n");
+
+	//getchar ();
+
+	/////////////////////////////////////
+
+	for (In1 = 0; In1 < ns; In1++)
+	{
+		for (In2 = In1; In2 < ns; In2++)
+		{
+			In12 = In1 * ns - In1 * (1 + In1) / 2 + In2;
+
+			for (InInt = 0; InInt < npi; InInt++)
+			{
+				PROGRESS [ In12 ][ InInt ] += ( shift [ In1 ] + shift [ In2 ] );
+
+				if ( PROGRESS [ In12 ][ InInt ] > dr1 [ In12 ][ InInt ] )
+				{
+					//printf ("%ld, PROGRESS [ %d ][ %d ] = %le: populate list?\n", klok, In12, InInt, PROGRESS [ In12 ][ InInt ] );
+
+					//getchar ();
+
+					populate_list ( In1, In2, InInt );
+
+					PROGRESS [ In12 ][ InInt ] = 0;
+
+					//printf ("list_mass [%d][%d] = %d\n\n", In12, InInt, list_mass [In12][InInt] );
+				}
+			}
+		}
+	}
+}
+
 int flag_any_2_atoms()
 {
     //'b'->bonds;'a'->angles;'d'->dihedral;'c'->native contacts;

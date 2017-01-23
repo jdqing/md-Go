@@ -1,0 +1,24 @@
+../bin/run: main.c init/glbcova.c init/init.c estimate/estimateGo.c run/runGo.c datadeal/dealfor.c box/boxoperation.c fun/force.c list/listroutine.c inout/readin.c tools/auxiliarytool.c tools/progress-bar.c tools/gbsa_f2c.c fun/energy.c inout/writeout.c diagnostics/diagnostics.c fun/potential.c tools/move.c
+	icc -c main.c
+	icc  -c init/glbcova.c
+	icc init/init.c  -c
+	icc estimate/estimateGo.c  -c
+	icc run/runGo.c  -c
+	icc datadeal/dealfor.c  -c
+	icc box/boxoperation.c  -c
+	icc fun/force.c  -c
+	icc list/listroutine.c  -c
+	icc inout/readin.c -c
+	icc tools/auxiliarytool.c  -c
+	icc tools/progress-bar.c  -c
+	icc tools/gbsa_f2c.c  -c
+	icc fun/energy.c  -c
+	icc inout/writeout.c  -c
+	icc diagnostics/diagnostics.c  -c
+	icc fun/potential.c  -c
+	icc tools/move.c  -c
+	-o
+	icc ../bin/run.out -lncurses
+
+clean:
+	-rm ../bin/run.out

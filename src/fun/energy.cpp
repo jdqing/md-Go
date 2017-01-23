@@ -53,23 +53,6 @@ double LJ_ENERGY_n ( double x2, int Jn12 )
 		return ( r4 );
 	}
 }
-double C_N_energy ( double r )
-{
-	double res;
-
-	res = k_C_N * (r - r_C_N) * (r - r_C_N);
-
-	return ( res );
-}
-
-double C_O_energy ( double r )
-{
-	double res;
-
-	res = k_C_O * (r - r_C_O) * (r - r_C_O);
-
-	return ( res );
-}
 
 double bond_energy ( int i1, int i2, double ( * energy) ( double r ) )
 {
@@ -94,41 +77,6 @@ double bond_energy ( int i1, int i2, double ( * energy) ( double r ) )
 	return ( tmp1 );
 }
 
-double C_N_CT_energy ( double theta )
-{
-	double res;
-
-	res = k_C_N_CT * (theta - theta_C_N_CT) * (theta - theta_C_N_CT);
-
-	return ( res );
-}
-
-double CT_C_N_energy ( double theta )
-{
-	double res;
-
-	res = k_CT_C_N * (theta - theta_CT_C_N) * (theta - theta_CT_C_N);
-
-	return ( res );
-}
-
-double CT_C_O_energy ( double theta )
-{
-	double res;
-
-	res = k_CT_C_O * (theta - theta_CT_C_O) * (theta - theta_CT_C_O);
-
-	return ( res );
-}
-
-double N_C_O_energy ( double theta )
-{
-	double res;
-
-	res = k_N_C_O * (theta - theta_N_C_O) * (theta - theta_N_C_O);
-
-	return ( res );
-}
 
 double valence_energy ( int i1, int i2, int i3, double ( * energy) ( double phi ) )
 {
@@ -175,23 +123,7 @@ double valence_energy ( int i1, int i2, int i3, double ( * energy) ( double phi 
 	return ( tmp1 );
 }
 
-double X2_N_C_X2_energy ( double phi )
-{
-	double res;
 
-	res = 10.0 * ( 1 + cos ( 2.0 * phi - pi ) ) + 2.0 * ( 1 + cos ( phi ) );
-
-	return ( res );
-}
-
-double X2_C_N_X_energy ( double phi )
-{
-	double res;
-
-	res = 5.0 * ( 1 + cos ( 2.0 * phi - pi ) );
-
-	return ( res );
-}
 
 double dihedral_energy ( int i1, int i2, int i3, int i4, double ( * energy) ( double phi ) )
 {
