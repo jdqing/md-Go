@@ -68,6 +68,12 @@ int read_Simu_Config(FILE *fp)
   get_dou (fp, "LJScaleN",    &pSimuCfg->LJScaleN);
   get_dou (fp, "CUTOFF",      &pSimuCfg->CUTOFF);
   get_long(fp, "SEED",        &pSimuCfg->SEED);
+  get_long(fp, "T_STEPS",     &pSimuCfg->T_STEPS);
+  get_long(fp, "STEPS_RE",    &pSimuCfg->STEPS_RE);
+
+#if MTM_yn
+  get_dou (fp, "CONCENT",     &pSimuCfg->CONCENT);
+#endif
 
   // printf("/////////////%s\n", pSimuCfg->PDBID);
   // printf("////////////%lf\n", pSimuCfg->TemperatureK);

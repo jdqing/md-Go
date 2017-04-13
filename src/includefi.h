@@ -17,5 +17,5 @@
 				   //LJ (WCA) -> InInt = 0; Coulomb -> InInt = 1
 
 #define ORDERVISC 0.1//default: 0.1 water viscosity
-
+#define MTM_yn    0
 #endif

@@ -37,8 +37,9 @@ int init_run_Go()
   }
   displayProgress(90);
 
-  // MTM_init();//molecular transfer model , ref.
-
+#if MTM_yn
+  MTM_init(NTP_atom,pSimuCfg->CONCENT);//molecular transfer model , ref.
+#endif
 
   displayProgress(100);
   printf("////////Initialization complete\n");
@@ -57,14 +58,14 @@ int run_Go()
 
   int In1;
 
-
-
   long int klok_old = 0;
 
-  const long int  total_steps = 500000001;
-  const int       steps_record= 10000;
+  // const long int  total_steps = 500000001;
+  // const int       steps_record= 10000;
+  long       total_steps = pSimuCfg->T_STEPS;
+  long       steps_record= pSimuCfg->STEPS_RE;
 
-  for (klok = klok_old; klok < total_steps; klok++ )
+  for (klok = klok_old; klok <= total_steps; klok++ )
   {
     if(klok % steps_record == 0)
     {
@@ -78,10 +79,15 @@ int run_Go()
 
     full_forces ();
 
+#if MTM_yn
+    MTM_ene(NTP_atom);
+#endif
+
 		move_rigid_units ();
 
 		In1 = check_box ();
 		if ( !In1 ) check_shifts ();
+
   }
   printf("////////MD run complete\n" );
 

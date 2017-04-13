@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 	printf("////////////////////////////Go_Begin/////////////////////////////\n");
 	printf("////Compiling Date: %s\n",__DATE__);
 	printf("////Compiling Time: %s\n",__TIME__);
+	printf("////////MTM_yes(1)/no(0): %d\n",MTM_yn);
 	printf("/////////////////////////////////////////////////////////////////\n");
 
 	char cfgfile[50];//the config file name.
@@ -33,15 +34,15 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 
-	estimate_Go();//estimate the parameters before running.
+	// estimate_Go();//estimate the parameters before running.
 
-	printf("LJ_SCALE_n=%lf\n",LJ_SCALE_n );
+	// printf("LJ_SCALE_n=%lf\n",LJ_SCALE_n );
 
 	run_Go();//begin run the MD.
 
-	con_Go();//continue if broken by some reason.
+	// con_Go();//continue if broken by some reason.
 
-	deal_for("RMSD");//deal the data for some results after running. e.g. Cv, RMSD...
+	// deal_for("RMSD");//deal the data for some results after running. e.g. Cv, RMSD...
 
 	end_Go();
 

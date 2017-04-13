@@ -1,7 +1,10 @@
 #include <stdio.h>
+extern "C"{
+  void sub_fortran_(int *, float *, double *);
+  double function_fortran_(double *);
+}
 
-void sub_fortran_(int *, float *, double *);
-double function_fortran_(double *);
+
 
 int main(int argc, char const *argv[]) {
   int num_int;

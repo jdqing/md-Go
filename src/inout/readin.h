@@ -10,6 +10,13 @@ typedef struct SimulationConfig {
   double        LJScaleN;
   double        CUTOFF;
   unsigned long SEED;
+  unsigned long T_STEPS;
+  unsigned long STEPS_RE;
+
+#if MTM_yn
+  double        CONCENT;
+#endif
+
 } SConfig;
 
 extern SConfig *pSimuCfg;

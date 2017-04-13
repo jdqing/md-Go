@@ -3125,9 +3125,12 @@ void adjust_box ( void )
 		{
 			In12 = In1 * ns - In1 * (1 + In1) / 2 + In2;
 
+
 			for (InInt = 0; InInt < npi; InInt++)
 			{
 				populate_list ( In1, In2, InInt );
+
+
 
 				PROGRESS [ In12 ][ InInt ] = 0;
 
@@ -3135,6 +3138,7 @@ void adjust_box ( void )
 			}
 		}
 	}
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
